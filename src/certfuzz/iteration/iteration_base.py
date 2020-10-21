@@ -3,6 +3,7 @@ Created on Feb 13, 2014
 
 @author: adh
 '''
+import time
 import logging
 import tempfile
 import abc
@@ -140,6 +141,8 @@ class IterationBase(object):
                 # we can keep going for a bit
                 logger.error(
                     'Intercepted IOError, will try to continue: %s', value)
+                # maybe there is a process still holding the file, give it some time
+                time.sleep(10)
                 handled = True
 
         if self.debug and etype:

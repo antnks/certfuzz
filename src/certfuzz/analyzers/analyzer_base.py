@@ -28,7 +28,10 @@ class Analyzer(object):
             self.cfg['target']['cmdline_template'], testcase.fuzzedfile.path)[1]
         self.outfile = outfile
         self.timeout = float(timeout)
-        self.progname = self.cmdargs[1]
+        if len(self.cmdargs) > 0:
+            self.progname = self.cmdargs[1]
+        else:
+            self.progname = ""
         self.options = options
 
         self.preserve_stderr = False
